@@ -1,0 +1,89 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    background: #eee;
+    margin: 0;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.tela {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tela .lista-contatos,
+.tela .novo-contato {
+    width: 400px;
+    height: 80%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+    background-color: #fff;
+}
+
+.novo-contato {
+    display: flex;
+    flex-direction: column;
+}
+
+.novo-contato form {
+    height: 87%;
+    overflow: auto;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.tela .titulo {
+    width: 100%;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 16px;
+}
+
+.div-input, .div-telefone {
+    padding: 5px 10px;
+}
+
+.div-input input, .div-telefone input, .div-input textarea {
+    width: 100%;
+}
+
+.div-endereco .div-input {
+    display: flex;
+    justify-content: space-around;
+}
+
+.div-endereco .div-input .cep {
+    width: 50%;
+}
+
+.novo-contato button {
+    width: 100%;
+}
+
+.div-telefone li {
+    display: flex;
+}
+
+.div-telefone input {
+    width: 90%;
+    margin-right: 10px;
+}
+
+.contatos {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}

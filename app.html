@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="TesteEturn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src * 'unsafe-inline'; img-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="pragma" content="no-cache">
+    
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/all.min.css">
+        <title>E-turn</title>
+    </head>
+    <body ng-controller="TesteEturnController">
+        <div class="tela">
+            <div class="lista-contatos">
+                <div class="titulo">
+                    <label>Lista de Contatos</label>
+                </div>
+                <ul>
+                    <li class="contatos" ng-repeat="contato in contatos track by $index">
+                        <label style="width: 85%; display: inline-block;">{{contato.nome}} - {{contato.email}}</label>
+                        <span ng-click="rmContato($index)"><i class="fas fa-trash"></i></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="novo-contato">
+                <div class="titulo">
+                    <label>Adicionar Novo Contato</label>
+                </div>
+                <form>
+                    <div class="div-input">
+                        <input type="text" placeholder="Nome Completo" ng-model="novoUsuario.nome" />
+                    </div>
+                    <div class="div-input">
+                        <input type="email" placeholder="E-mail" ng-model="novoUsuario.email" />
+                    </div>
+                    <div class="div-telefone">
+                        <ul>
+                            <li ng-repeat="telefone in novoUsuario.telefones track by $index">
+                                <input type="text" placeholder="(00) 00000-0000" ng-model="telefone.numero" ui-br-phone-number-mask="countryCode" />
+                                <span ng-show="$index == novoUsuario.telefones.length - 1" ng-click="addNumero()"><i class="fas fa-plus"></i></span>
+                                <span ng-show="$index != novoUsuario.telefones.length - 1" ng-click="rmNumero($index)"><i class="fas fa-minus"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="div-input">
+                        <label>Observação do Contato</label>
+                        <textarea maxlength="500" ng-model="novoUsuario.obs"></textarea>
+                    </div>
+                    <div class="div-endereco">
+                        <ul>
+                            <li ng-repeat="endereco in novoUsuario.enderecos  track by $index">
+                                <div class="div-input">
+                                    <input class="cep" type="text" placeholder="CEP" ng-model="endereco.cep" ui-br-cep-mask />
+                                    <button ng-click="validaCep($index)">Buscar CEP</button>
+                                    <input ng-disabled="!endereco.cepIsValid" class="numero" type="number" style="width: 35%;" placeholder="Número" ng-model="endereco.numero" />
+                                </div>
+                                <div class="div-input">
+                                    <input ng-disabled="true" type="text" placeholder="Logradouro" ng-model="endereco.logradouro" />
+                                </div>
+                                <div class="div-input">
+                                    <input ng-disabled="true" type="text" placeholder="Localidade" ng-model="endereco.localidade" />
+                                </div>
+                                <div class="div-input">
+                                    <input ng-disabled="true" type="text" placeholder="UF" ng-model="endereco.uf" />
+                                    <input ng-disabled="true" type="text" placeholder="Cidade" ng-model="endereco.cidade" />
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="padding: 0 10px;">
+                        <button ng-click="addEndereco()">Adicionar outro endereço</button>
+                    </div>
+                </form>
+                <div style="padding: 0 10px;">
+                    <button ng-click="addContato()">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="js/vendor/all.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular.min.js"></script>
+        <script type="text/javascript" src="js/vendor/localforage.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-localForage.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-input-masks-standalone.min.js"></script>
+        <script type="text/javascript" src="js/vendor/angular-input-masks-dependencies.min.js"></script>
+
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/controller/eturn.js"></script>
+    </body>
+</html>
